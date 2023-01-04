@@ -15,16 +15,16 @@ namespace DesafioProjetoHospedagem.Models
 
         public void CadastrarHospedes(List<Pessoa> hospedes)
         {
-            // TODO: Verificar se a capacidade é maior ou igual ao número de hóspedes sendo recebido
-            // *IMPLEMENTE AQUI*
-            if (true)
+            
+            // Verificar se a capacidade é maior ou igual ao número de hóspedes sendo recebido.
+            if (hospedes.Count <= Suite.Capacidade)
             {
                 Hospedes = hospedes;
             }
             else
             {
-                // TODO: Retornar uma exception caso a capacidade seja menor que o número de hóspedes recebido
-                // *IMPLEMENTE AQUI*
+                //Retornar uma exception caso a capacidade seja menor que o número de hóspedes recebido
+                throw new Exception(" A quantidade de hóspedes excede a capacidade da suíte.");
             }
         }
 
@@ -35,26 +35,35 @@ namespace DesafioProjetoHospedagem.Models
 
         public int ObterQuantidadeHospedes()
         {
-            // TODO: Retorna a quantidade de hóspedes (propriedade Hospedes)
-            // *IMPLEMENTE AQUI*
-            return 0;
+            //Retorna a quantidade de hóspedes (propriedade Hospedes)
+            int quantidade = Hospedes.Count;
+            return quantidade;
         }
 
         public decimal CalcularValorDiaria()
         {
-            // TODO: Retorna o valor da diária
+            //Retorna o valor da diária
             // Cálculo: DiasReservados X Suite.ValorDiaria
-            // *IMPLEMENTE AQUI*
+
             decimal valor = 0;
+            decimal desconto = 0;
+            decimal vlrTotal = 0;
 
             // Regra: Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
-            // *IMPLEMENTE AQUI*
-            if (true)
+            valor = DiasReservados*Suite.ValorDiaria;
+            if (DiasReservados >= 10)
             {
-                valor = 0;
+                desconto = valor * 10/100;
+               // Console.WriteLine($"Foi atribuido ao hospede o desconto no valor de {desconto.ToString("C")}");
+                vlrTotal = valor - desconto;
             }
+            else
+            {
+                vlrTotal = valor;
 
-            return valor;
+            }
+            return  vlrTotal;
+
         }
     }
 }
